@@ -11,14 +11,13 @@
   box-sizing: border-box;
   font-family: "Segoe UI", Roboto, "Microsoft YaHei", sans-serif;
 }
-
 body {
   background: #0a101f;
   color: #e6edf7;
   line-height: 1.6;
 }
 
-/* 顶部导航 - 科技感横版 */
+/* 顶部导航 */
 .header {
   background: linear-gradient(90deg, #111833, #1e295a);
   padding: 0 28px;
@@ -45,18 +44,18 @@ body {
 }
 .nav {
   display: flex;
-  gap: 6px;
+  gap: 10px;
 }
 .nav a {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 12px 20px;
+  padding: 14px 22px;
   color: rgba(255,255,255,0.9);
   text-decoration: none;
   font-size: 15px;
-  font-weight: 500;
-  border-radius: 8px;
+  font-weight: 600;
+  border-radius: 10px;
   transition: all 0.25s ease;
   white-space: nowrap;
   border: 1px solid transparent;
@@ -68,19 +67,31 @@ body {
   color: #00aaff;
   box-shadow: 0 0 10px rgba(0,150,255,0.2);
 }
+.nav a.btn-high {
+  background: linear-gradient(90deg, #00aaff, #0088ff);
+  color: #fff;
+  font-weight: 700;
+  font-size: 16px;
+  padding: 14px 26px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,170,255,0.3);
+}
+.nav a.btn-high:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0,170,255,0.45);
+  color: #fff;
+}
 .nav a i {
   width: 14px;
   text-align: center;
 }
 
-/* 容器 */
+/* 布局 */
 .container {
   max-width: 1400px;
   margin: 0 auto;
   padding: 32px 20px;
 }
-
-/* 页面标题 */
 .page-title {
   font-size: 24px;
   font-weight: 700;
@@ -94,7 +105,7 @@ body {
   color: #00aaff;
 }
 
-/* 卡片 - 科技玻璃感 */
+/* 卡片 */
 .card {
   background: rgba(20, 28, 48, 0.8);
   border-radius: 16px;
@@ -119,7 +130,7 @@ body {
   color: #00aaff;
 }
 
-/* 按钮 - 超大气科技感 */
+/* 按钮 */
 button {
   padding: 12px 24px;
   border-radius: 10px;
@@ -186,7 +197,7 @@ input:focus, select:focus {
   background: rgba(10,16,30,0.9);
 }
 
-/* 上传区域 */
+/* 上传 */
 .upload-box {
   border: 2px dashed rgba(0,150,255,0.3);
   border-radius: 12px;
@@ -210,7 +221,7 @@ input:focus, select:focus {
   display: none;
 }
 
-/* 表格 */
+/* 表格核心修复：超长内容自动隐藏，不挤压按钮 */
 .table-container {
   overflow-x: auto;
   margin-top: 20px;
@@ -221,6 +232,7 @@ table {
   width: 100%;
   border-collapse: collapse;
   font-size: 15px;
+  table-layout: fixed;
 }
 th {
   background: rgba(20, 28, 48, 0.9);
@@ -235,10 +247,24 @@ td {
   padding: 14px;
   border-bottom: 1px solid rgba(30, 42, 70, 0.5);
   color: #e6edf7;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  vertical-align: middle;
 }
 tr:hover {
   background: rgba(25, 35, 60, 0.6);
 }
+
+/* 列宽分配，给按钮足够空间 */
+th:nth-child(1), td:nth-child(1) { width: 50px; }
+th:nth-child(2), td:nth-child(2) { width: 220px; }
+th:nth-child(3), td:nth-child(3) { width: 120px; }
+th:nth-child(4), td:nth-child(4) { width: 110px; }
+th:nth-child(5), td:nth-child(5) { width: 120px; }
+th:nth-child(6), td:nth-child(6) { width: 160px; }
+th:nth-child(7), td:nth-child(7) { width: 180px; }
+th:nth-child(8), td:nth-child(8) { width: 380px; white-space: normal; }
 
 /* 弹窗 */
 .modal {
@@ -296,7 +322,7 @@ tr:hover {
   100% { transform: rotate(360deg); }
 }
 
-/* 布局工具类 */
+/* 工具类 */
 .flex { display: flex; }
 .flex-wrap { flex-wrap: wrap; }
 .gap-8 { gap: 8px; }
@@ -306,16 +332,12 @@ tr:hover {
 .mb-16 { margin-bottom: 16px; }
 .align-center { align-items: center; }
 .justify-between { justify-content: space-between; }
-
-/* 无数据 */
 .no-data {
   text-align: center;
   padding: 60px 0;
   color: rgba(255,255,255,0.3);
   font-size: 15px;
 }
-
-/* 分页 */
 .pagination {
   display: flex;
   gap: 8px;
@@ -333,21 +355,10 @@ tr:hover {
   color: white;
   box-shadow: 0 0 10px rgba(0,140,255,0.3);
 }
+.content-section { display: none; }
+.content-section.active { display: block; }
+.password-text { user-select: none; }
 
-/* 内容模块 */
-.content-section {
-  display: none;
-}
-.content-section.active {
-  display: block;
-}
-
-/* 密码 */
-.password-text {
-  user-select: none;
-}
-
-/* 移动端适配 */
 @media (max-width: 768px) {
   .header {
     height: auto;
@@ -356,47 +367,30 @@ tr:hover {
     gap: 12px;
     align-items: flex-start;
   }
-  .nav {
-    flex-wrap: wrap;
-    width: 100%;
-  }
-  .nav a {
-    flex: 1;
-    justify-content: center;
-    padding: 10px 12px;
-  }
-  .container {
-    padding: 20px 12px;
-  }
-  .flex {
-    flex-wrap: wrap;
-  }
-  .card {
-    padding: 20px;
-  }
+  .nav { flex-wrap: wrap; width: 100%; }
+  .nav a { flex: 1; justify-content: center; padding: 10px 12px; }
+  .container { padding: 20px 12px; }
+  .flex { flex-wrap: wrap; }
+  .card { padding: 20px; }
 }
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <script src="https://cdn.jsdelivr.net/npm/crypto-js@4.2.0/crypto-js.min.js"></script>
 </head>
-
 <body>
 
-<!-- 顶部横版导航 -->
 <div class="header">
   <h1><i class="fas fa-envelope"></i> 微软邮箱快捷取件令牌批量管理系统</h1>
   <div class="nav">
     <a href="#" data-target="dashboard" class="active"><i class="fas fa-chart-pie"></i> 数据概览</a>
     <a href="#" data-target="emails"><i class="fas fa-list"></i> 邮箱管理</a>
-    <a href="https://o2-api-brown.vercel.app/bj.html" target="_blank"><i class="fas fa-link"></i> API取件</a>
-    <a href="https://91amail.com/" target="_blank"><i class="fas fa-shopping-cart"></i> 购买邮箱</a>
-    <a href="https://wwzs.lanzouu.com/iXRrG3bm9jej" target="_blank"><i class="fas fa-sync-alt"></i> 令牌工具</a>
+    <a href="https://o2-api-brown.vercel.app/bj.html" target="_blank" class="btn-high"><i class="fas fa-link"></i> API取件</a>
+    <a href="https://91amail.com/" target="_blank" class="btn-high" style="background: linear-gradient(90deg, #ff6600, #ff3366);"><i class="fas fa-shopping-cart"></i> 购买邮箱</a>
+    <a href="https://wwzs.lanzouu.com/iXRrG3bm9jej" target="_blank" class="btn-high"><i class="fas fa-sync-alt"></i> 令牌工具</a>
   </div>
 </div>
 
-<!-- 内容容器 -->
 <div class="container">
-  <!-- 概览 -->
   <div id="dashboard" class="content-section active">
     <div class="page-title"><i class="fas fa-chart-pie"></i> 数据概览</div>
     <div class="card">
@@ -406,10 +400,8 @@ tr:hover {
     </div>
   </div>
 
-  <!-- 邮箱管理 -->
   <div id="emails" class="content-section">
     <div class="page-title"><i class="fas fa-list"></i> 邮箱管理</div>
-
     <div class="card">
       <div class="card-title"><i class="fas fa-upload"></i> 批量导入 / 导出</div>
       <div class="upload-box" id="upload-box">
@@ -486,7 +478,6 @@ tr:hover {
     </div>
   </div>
 
-  <!-- 邮件列表 -->
   <div id="mail-list" class="content-section">
     <div class="page-title"><i class="fas fa-inbox"></i> 邮件列表</div>
     <div class="card">
@@ -514,7 +505,6 @@ tr:hover {
   </div>
 </div>
 
-<!-- 弹窗 -->
 <div class="modal" id="modal">
   <div class="modal-content">
     <div class="modal-title" id="modal-title"></div>
@@ -578,69 +568,90 @@ tr:hover {
 <div class="loading-overlay" id="loading-overlay"><div class="loading-spinner"></div></div>
 
 <script>
-// 功能完整 + 跳转修复
-const ENCRYPT_KEY='xh_email_system_2024';let mailData=[];let originalMailData=[];let currentMailPage=1;const mailItemsPerPage=10;let searchKeyword='';let mailSearchKeyword='';let passwordVisible=false;let confirmCallback=null;let currentGroupFilter='all';
-function getGroups(){const encryptedData=localStorage.getItem('emailGroups')||'';if(encryptedData){try{const decrypted=CryptoJS.AES.decrypt(encryptedData,ENCRYPT_KEY).toString(CryptoJS.enc.Utf8);return decrypted&&Array.isArray(JSON.parse(decrypted))?JSON.parse(decrypted):['默认分组'];}catch(e){return['默认分组'];}}return['默认分组'];}
-function saveGroups(groups){localStorage.setItem('emailGroups',CryptoJS.AES.encrypt(JSON.stringify(groups),ENCRYPT_KEY).toString());updateGroupSelectors();}
-function updateGroupSelectors(){const groups=getGroups();const selectElements=[document.getElementById('group-filter'),document.getElementById('batch-group-select'),document.getElementById('edit-group')];selectElements.forEach(select=>{if(select){const currentValue=select.value;select.innerHTML='';if(select.id==='group-filter'){const allOption=document.createElement('option');allOption.value='all';allOption.textContent='全部分组';select.appendChild(allOption);}else if(select.id==='batch-group-select'){const emptyOption=document.createElement('option');emptyOption.value='';emptyOption.textContent='选择目标分组';select.appendChild(emptyOption);}groups.forEach(group=>{const option=document.createElement('option');option.value=group;option.textContent=group;select.appendChild(option);});if(currentValue&&(select.id==='group-filter'||groups.includes(currentValue))){select.value=currentValue;}}});}
-document.addEventListener('DOMContentLoaded',function(){initNavLinks();initSelectAll();initDragUpload();initSearchEnter();initGroups();loadData();});
-function initGroups(){const groups=getGroups();if(!groups.includes('默认分组')){groups.unshift('默认分组');saveGroups(groups);}updateGroupSelectors();}
-function initNavLinks(){document.querySelectorAll('.nav a').forEach(link=>{link.addEventListener('click',function(e){if(this.hasAttribute('target')&&this.target==='_blank')return;e.preventDefault();document.querySelectorAll('.nav a').forEach(l=>l.classList.remove('active'));this.classList.add('active');const target=this.getAttribute('data-target');document.querySelectorAll('.content-section').forEach(s=>s.classList.remove('active'));document.getElementById(target).classList.add('active');});});}
+const ENCRYPT_KEY='xh_email_system_2024';
+let mailData=[], originalMailData=[], currentMailPage=1, searchKeyword='', mailSearchKeyword='', passwordVisible=false, confirmCallback=null, currentGroupFilter='all';
+let currentPage=1, itemsPerPage=5;
+
+function getGroups(){try{const d=CryptoJS.AES.decrypt(localStorage.getItem('emailGroups')||'',ENCRYPT_KEY).toString(CryptoJS.enc.Utf8);return d&&JSON.parse(d)||['默认分组'];}catch(e){return['默认分组'];}}
+function saveGroups(g){localStorage.setItem('emailGroups',CryptoJS.AES.encrypt(JSON.stringify(g),ENCRYPT_KEY).toString());updateGroupSelectors();}
+function updateGroupSelectors(){const g=getGroups();[['group-filter','all'],['batch-group-select',''],['edit-group',null]].forEach(([id,d])=>{const s=document.getElementById(id);if(!s)return;const v=s.value;s.innerHTML='';if(d!==null){const o=document.createElement('option');o.value=d;o.textContent=d==='all'?'全部分组':'选择目标分组';s.appendChild(o);}g.forEach(x=>{const o=document.createElement('option');o.value=x;o.textContent=x;s.appendChild(o);});if(v)s.value=v;});}
+
+document.addEventListener('DOMContentLoaded',()=>{initNavLinks();initSelectAll();initDragUpload();initSearchEnter();initGroups();loadData();});
+function initGroups(){const g=getGroups();if(!g.includes('默认分组')){g.unshift('默认分组');saveGroups(g);}updateGroupSelectors();}
+function initNavLinks(){document.querySelectorAll('.nav a').forEach(l=>{l.addEventListener('click',e=>{if(l.target==='_blank')return;e.preventDefault();document.querySelectorAll('.nav a').forEach(x=>x.classList.remove('active'));l.classList.add('active');document.querySelectorAll('.content-section').forEach(x=>x.classList.remove('active'));document.getElementById(l.dataset.target).classList.add('active');});});}
 function showLoading(){document.getElementById('loading-overlay').style.display='flex';}
 function hideLoading(){document.getElementById('loading-overlay').style.display='none';}
-let currentPage=1;let itemsPerPage=5;
-function loadData(){const encryptedData=localStorage.getItem('emailData')||'';let data=[];if(encryptedData){data=decryptData(encryptedData)||[];}data=data.map(item=>({group:item.group||'默认分组',remark:item.remark||'',...item}));localStorage.setItem('emailData',encryptData(data));const encryptedPassword=localStorage.getItem('password')||'';if(encryptedPassword){const decryptedPwd=decryptData(encryptedPassword);if(decryptedPwd)document.getElementById('password').value=decryptedPwd;}let filteredData=data;if(currentGroupFilter!=='all')filteredData=filteredData.filter(item=>item.group===currentGroupFilter);if(searchKeyword)filteredData=filteredData.filter(item=>item.email.toLowerCase().includes(searchKeyword)||item.remark.toLowerCase().includes(searchKeyword));renderTable(filteredData);renderPagination(filteredData.length);toggleNoData(filteredData.length===0);updateDashboard(data);}
-function renderTable(data){const b=document.querySelector('#emails table tbody');b.innerHTML='';const s=(currentPage-1)*itemsPerPage,e=s+itemsPerPage;data.slice(s,e).forEach((item,idx)=>{const r=document.createElement('tr');const c=document.createElement('td');const ch=document.createElement('input');ch.type='checkbox';ch.dataset.email=item.email;c.appendChild(ch);r.appendChild(c);const pCell=document.createElement('td');pCell.className='password-cell';const pSpan=document.createElement('span');pSpan.className='password-text';pSpan.textContent=passwordVisible?item.password:'••••••••';const pBtn=document.createElement('button');pBtn.style.border='none';pBtn.style.background='none';pBtn.style.cursor='pointer';pBtn.style.marginLeft='4px';pBtn.style.color='#00aaff';pBtn.innerHTML=passwordVisible?'<i class="fas fa-eye-slash"></i>':'<i class="fas fa-eye"></i>';pBtn.onclick=(e)=>{e.stopPropagation();const v=pSpan.textContent!=='••••••••';pSpan.textContent=v?'••••••••':item.password;pBtn.innerHTML=v?'<i class="fas fa-eye"></i>':'<i class="fas fa-eye-slash"></i>';};pCell.appendChild(pSpan);pCell.appendChild(pBtn);r.appendChild(document.createElement('td')).textContent=item.email;r.appendChild(pCell);r.appendChild(document.createElement('td')).textContent=item.group||'默认分组';const reCell=document.createElement('td');reCell.title=item.remark||'无备注';reCell.textContent=item.remark||'无备注';r.appendChild(reCell);r.appendChild(document.createElement('td')).textContent=item.clientId;const rtCell=document.createElement('td');rtCell.title=item.refreshToken;rtCell.textContent=item.refreshToken;r.appendChild(rtCell);const aCell=document.createElement('td');aCell.innerHTML=`
-<button class="btn-default" onclick="viewInbox(${s+idx})">收件箱</button>
+
+function loadData(){let data=[];try{const d=localStorage.getItem('emailData');if(d)data=JSON.parse(CryptoJS.AES.decrypt(d,ENCRYPT_KEY).toString(CryptoJS.enc.Utf8));}catch(e){}data=data.map(x=>({group:x.group||'默认分组',remark:x.remark||'',...x}));try{const p=localStorage.getItem('password');if(p)document.getElementById('password').value=JSON.parse(CryptoJS.AES.decrypt(p,ENCRYPT_KEY).toString(CryptoJS.enc.Utf8));}catch(e){}let f=data;if(currentGroupFilter!=='all')f=f.filter(x=>x.group===currentGroupFilter);if(searchKeyword)f=f.filter(x=>x.email.toLowerCase().includes(searchKeyword)||x.remark.toLowerCase().includes(searchKeyword));renderTable(f);renderPagination(f.length);document.getElementById('no-data').style.display=f.length?'none':'block';updateDashboard(data);}
+
+function renderTable(d){const b=document.querySelector('#emails table tbody');b.innerHTML='';const s=(currentPage-1)*itemsPerPage,e=s+itemsPerPage;d.slice(s,e).forEach((item,idx)=>{const r=document.createElement('tr');
+const c=document.createElement('td');const ch=document.createElement('input');ch.type='checkbox';ch.dataset.email=item.email;c.appendChild(ch);r.appendChild(c);
+const p=document.createElement('td');const sp=document.createElement('span');sp.className='password-text';sp.textContent=passwordVisible?item.password:'••••••••';const pb=document.createElement('button');pb.style='border:none;background:none;cursor:pointer;margin-left:4px;color:#00aaff';pb.innerHTML=passwordVisible?'<i class="fas fa-eye-slash"></i>':'<i class="fas fa-eye"></i>';pb.onclick=ev=>{ev.stopPropagation();const v=sp.textContent!=='••••••••';sp.textContent=v?'••••••••':item.password;pb.innerHTML=v?'<i class="fas fa-eye"></i>':'<i class="fas fa-eye-slash"></i>';};p.appendChild(sp);p.appendChild(pb);r.appendChild(p);
+const emailTd=document.createElement('td');emailTd.textContent=item.email;r.appendChild(emailTd);
+const groupTd=document.createElement('td');groupTd.textContent=item.group;r.appendChild(groupTd);
+const remarkTd=document.createElement('td');remarkTd.textContent=item.remark||'无';r.appendChild(remarkTd);
+const cidTd=document.createElement('td');cidTd.textContent=item.clientId;r.appendChild(cidTd);
+const rtTd=document.createElement('td');rtTd.textContent=item.refreshToken;r.appendChild(rtTd);
+const a=document.createElement('td');a.innerHTML=`<button class="btn-default" onclick="viewInbox(${s+idx})">收件箱</button>
 <button class="btn-default" onclick="viewJunk(${s+idx})">垃圾箱</button>
 <button class="btn-primary" onclick="editEmail(${s+idx})">编辑</button>
-<button class="btn-danger" onclick="showDeleteConfirm(${s+idx})">删除</button>
-`;r.appendChild(aCell);b.appendChild(r);});}
-function initSelectAll(){document.getElementById('select-all').addEventListener('change',function(){document.querySelectorAll('#emails table tbody input[type="checkbox"]').forEach(c=>c.checked=this.checked);updateSelectedItems();});document.querySelector('#emails table tbody').addEventListener('change',e=>{if(e.target.type==='checkbox')updateSelectedItems();});}
-let selectedItems=[];
-function updateSelectedItems(){selectedItems=Array.from(document.querySelectorAll('#emails table tbody input[type="checkbox"]:checked')).map(c=>c.dataset.email);}
-function batchDelete(){if(selectedItems.length===0){showModal('提示','请选择要删除的项！');return;}showConfirmModal('确认批量删除',`确定删除选中 ${selectedItems.length} 项？`,()=>{let d=decryptData(localStorage.getItem('emailData'))||[];d=d.filter(x=>!selectedItems.includes(x.email));localStorage.setItem('emailData',encryptData(d));loadData();showModal('成功','删除完成');});}
-function deleteAllEmails(){let d=decryptData(localStorage.getItem('emailData'))||[];if(d.length===0){showModal('提示','无数据可删');return;}showConfirmModal('警告','将删除所有数据，不可恢复！',()=>{localStorage.removeItem('emailData');loadData();showModal('成功','已清空全部');});}
-function renderPagination(total){const p=document.getElementById('pagination');p.innerHTML='';const tp=Math.ceil(total/itemsPerPage);const mb=5;let sp=Math.max(1,currentPage-Math.floor(mb/2)),ep=Math.min(tp,sp+mb-1);if(ep-sp+1<mb)sp=Math.max(1,ep-mb+1);if(currentPage>1){const b=document.createElement('button');b.textContent='上一页';b.onclick=()=>changePage(currentPage-1);p.appendChild(b);}if(sp>1){const b=document.createElement('button');b.textContent=1;b.onclick=()=>changePage(1);p.appendChild(b);if(sp>2)p.appendChild(document.createTextNode('...'));}for(let i=sp;i<=ep;i++){const b=document.createElement('button');b.textContent=i;if(i===currentPage)b.classList.add('active');b.onclick=()=>changePage(i);p.appendChild(b);}if(ep<tp){if(ep<tp-1)p.appendChild(document.createTextNode('...'));const b=document.createElement('button');b.textContent=tp;b.onclick=()=>changePage(tp);p.appendChild(b);}if(currentPage<tp){const b=document.createElement('button');b.textContent='下一页';b.onclick=()=>changePage(currentPage+1);p.appendChild(b);}}
-function changePage(p){currentPage=p;loadData();}
+<button class="btn-danger" onclick="showDeleteConfirm(${s+idx})">删除</button>`;r.appendChild(a);b.appendChild(r);});}
+
+function initSelectAll(){document.getElementById('select-all').addEventListener('change',()=>{document.querySelectorAll('#emails table tbody input[type="checkbox"]').forEach(c=>c.checked=document.getElementById('select-all').checked);updateSelectedItems();});document.querySelector('#emails table tbody').addEventListener('change',e=>{if(e.target.type==='checkbox')updateSelectedItems();});}
+function updateSelectedItems(){const arr=[];document.querySelectorAll('#emails table tbody input[type="checkbox"]:checked').forEach(c=>arr.push(c.dataset.email));return arr;}
+
+function batchDelete(){const arr=updateSelectedItems();if(arr.length===0)return showModal('提示','请选择要删除的项！');showConfirmModal('确认批量删除',`确定删除选中 ${arr.length} 项？`,()=>{let d=[];try{d=JSON.parse(CryptoJS.AES.decrypt(localStorage.getItem('emailData'),ENCRYPT_KEY).toString(CryptoJS.enc.Utf8));}catch(e){}d=d.filter(x=>!arr.includes(x.email));localStorage.setItem('emailData',CryptoJS.AES.encrypt(JSON.stringify(d),ENCRYPT_KEY).toString());loadData();showModal('成功','删除完成');});}
+function deleteAllEmails(){showConfirmModal('警告','将删除所有数据，不可恢复！',()=>{localStorage.removeItem('emailData');loadData();showModal('成功','已清空全部');});}
+
+function renderPagination(t){const p=document.getElementById('pagination');p.innerHTML='';const tp=Math.ceil(t/itemsPerPage);if(tp<=1)return;const mb=5;let sp=Math.max(1,currentPage-Math.floor(mb/2)),ep=Math.min(tp,sp+mb-1);if(ep-sp<mb-1)sp=Math.max(1,ep-mb+1);const add=(t,v)=>{const b=document.createElement('button');b.textContent=t;b.onclick=()=>{currentPage=v;loadData();};if(v===currentPage)b.classList.add('active');p.appendChild(b);};if(currentPage>1)add('上一页',currentPage-1);if(sp>1){add(1,1);if(sp>2)p.appendChild(document.createTextNode('...'));}for(let i=sp;i<=ep;i++)add(i,i);if(ep<tp){if(ep<tp-1)p.appendChild(document.createTextNode('...'));add(tp,tp);}if(currentPage<tp)add('下一页',currentPage+1);}
 function changeItemsPerPage(v){itemsPerPage=parseInt(v);currentPage=1;loadData();}
-function toggleNoData(e){document.getElementById('no-data').style.display=e?'block':'none';}
-function viewInbox(i){const d=decryptData(localStorage.getItem('emailData'))||[];let f=d;if(currentGroupFilter!=='all')f=f.filter(x=>x.group===currentGroupFilter);if(searchKeyword)f=f.filter(x=>x.email.includes(searchKeyword)||x.remark.includes(searchKeyword));const item=f[i];currentMailPage=1;mailSearchKeyword='';loadMailList(item.refreshToken,item.clientId,item.email,'INBOX');}
-function viewJunk(i){const d=decryptData(localStorage.getItem('emailData'))||[];let f=d;if(currentGroupFilter!=='all')f=f.filter(x=>x.group===currentGroupFilter);if(searchKeyword)f=f.filter(x=>x.email.includes(searchKeyword)||x.remark.includes(searchKeyword));const item=f[i];currentMailPage=1;mailSearchKeyword='';loadMailList(item.refreshToken,item.clientId,item.email,'Junk');}
-function loadMailList(rt,cid,em,mb){showLoading();const pwd=decryptData(localStorage.getItem('password'))||'';fetch(`/api/mail-all?refresh_token=${rt}&client_id=${cid}&email=${em}&mailbox=${mb}&response_type=json&password=${pwd}`).then(r=>{if(!r.ok)throw r;return r.json();}).then(data=>{mailData=data;originalMailData=[...data];document.querySelectorAll('.content-section').forEach(x=>x.classList.remove('active'));document.getElementById('mail-list').classList.add('active');renderMailTable(data);}).catch(()=>showModal('错误','加载邮件失败')).finally(()=>hideLoading());}
-function renderMailTable(d){const b=document.querySelector('#mail-list table tbody');b.innerHTML='';document.getElementById('no-data-mail').style.display=d.length?'none':'block';const s=(currentMailPage-1)*10,e=s+10;d.slice(s,e).forEach((x,i)=>{const r=document.createElement('tr');r.innerHTML=`<td>${x.send}</td><td>${x.subject}</td><td>${x.date}</td><td><button class="btn-primary" onclick="viewMail(${s+i})">查看</button></td>`;b.appendChild(r);});renderMailPagination(d.length);}
-function renderMailPagination(t){const p=document.getElementById('pagination-mail');p.innerHTML='';const tp=Math.ceil(t/10);for(let i=1;i<=tp;i++){const b=document.createElement('button');b.textContent=i;if(i===currentMailPage)b.classList.add('active');b.onclick=()=>{currentMailPage=i;renderMailTable(mailSearchKeyword?originalMailData.filter(m=>m.send.includes(mailSearchKeyword)||m.subject.includes(mailSearchKeyword)):originalMailData);};p.appendChild(b);}}
+
+function viewInbox(i){loadMail(i,'INBOX');}
+function viewJunk(i){loadMail(i,'Junk');}
+function loadMail(i,box){let d=[];try{d=JSON.parse(CryptoJS.AES.decrypt(localStorage.getItem('emailData'),ENCRYPT_KEY).toString(CryptoJS.enc.Utf8));}catch(e){return;}let f=d;if(currentGroupFilter!=='all')f=f.filter(x=>x.group===currentGroupFilter);if(searchKeyword)f=f.filter(x=>x.email.includes(searchKeyword)||x.remark.includes(searchKeyword));const item=f[i];if(!item)return;currentMailPage=1;mailSearchKeyword='';showLoading();const p=document.getElementById('password').value||'';fetch(`/api/mail-all?refresh_token=${item.refreshToken}&client_id=${item.clientId}&email=${item.email}&mailbox=${box}&response_type=json&password=${p}`).then(r=>r.json()).then(data=>{mailData=data;originalMailData=[...data];document.querySelectorAll('.content-section').forEach(x=>x.classList.remove('active'));document.getElementById('mail-list').classList.add('active');renderMailTable(data);}).catch(()=>showModal('错误','加载邮件失败')).finally(()=>hideLoading());}
+
+function renderMailTable(d){const b=document.querySelector('#mail-list table tbody');b.innerHTML='';document.getElementById('no-data-mail').style.display=d.length?'none':'block';const s=(currentMailPage-1)*10;d.slice(s,s+10).forEach((x,i)=>{const r=document.createElement('tr');r.innerHTML=`<td>${x.send}</td><td>${x.subject}</td><td>${x.date}</td><td><button class="btn-primary" onclick="viewMail(${s+i})">查看</button></td>`;b.appendChild(r);});renderMailPagination(d.length);}
+function renderMailPagination(t){const p=document.getElementById('pagination-mail');p.innerHTML='';const tp=Math.ceil(t/10);for(let i=1;i<=tp;i++){const b=document.createElement('button');b.textContent=i;if(i===currentMailPage)b.classList.add('active');b.onclick=()=>{currentMailPage=i;renderMailTable(mailSearchKeyword?originalMailData.filter(m=>m.send.toLowerCase().includes(mailSearchKeyword)||m.subject.toLowerCase().includes(mailSearchKeyword)):originalMailData);};p.appendChild(b);}}
 function searchMails(){mailSearchKeyword=document.getElementById('mail-search').value.trim().toLowerCase();currentMailPage=1;renderMailTable(originalMailData.filter(m=>m.send.toLowerCase().includes(mailSearchKeyword)||m.subject.toLowerCase().includes(mailSearchKeyword)));}
 function clearMailSearch(){document.getElementById('mail-search').value='';mailSearchKeyword='';currentMailPage=1;renderMailTable(originalMailData);}
-function viewMail(i){const d=mailSearchKeyword?originalMailData.filter(m=>m.send.includes(mailSearchKeyword)||m.subject.includes(mailSearchKeyword))[i]:originalMailData[i];if(d){document.getElementById('mail-modal-title').textContent=d.subject;document.getElementById('mail-modal-sender').textContent='发件人：'+d.send;document.getElementById('mail-modal-subject').textContent='主题：'+d.subject;document.getElementById('mail-modal-date').textContent='日期：'+d.date;document.getElementById('mail-modal-content').innerHTML=d.html||d.text;document.getElementById('mail-modal').style.display='flex';}}
+function viewMail(i){const d=mailSearchKeyword?originalMailData.filter(m=>m.send.includes(mailSearchKeyword)||m.subject.includes(mailSearchKeyword))[i]:originalMailData[i];if(!d)return;document.getElementById('mail-modal-title').textContent=d.subject;document.getElementById('mail-modal-sender').textContent='发件人：'+d.send;document.getElementById('mail-modal-subject').textContent='主题：'+d.subject;document.getElementById('mail-modal-date').textContent='日期：'+d.date;document.getElementById('mail-modal-content').innerHTML=d.html||d.text;document.getElementById('mail-modal').style.display='flex';}
 function closeMailModal(){document.getElementById('mail-modal').style.display='none';}
+
 function showDeleteConfirm(i){confirmCallback=()=>deleteEmail(i);document.getElementById('confirm-message').textContent='确定删除该邮箱？';document.getElementById('confirm-modal').style.display='flex';}
-function deleteEmail(i){const d=decryptData(localStorage.getItem('emailData'))||[];let f=d;if(currentGroupFilter!=='all')f=f.filter(x=>x.group===currentGroupFilter);if(searchKeyword)f=f.filter(x=>x.email.includes(searchKeyword)||x.remark.includes(searchKeyword));const idx=d.findIndex(x=>x.email===f[i].email);if(idx>-1){d.splice(idx,1);localStorage.setItem('emailData',encryptData(d));loadData();showModal('成功','已删除');}}
-function importEmails(){const sep=document.getElementById('delimiter').value;const file=document.getElementById('file-input').files[0];if(!sep||!file){showModal('错误','请输入分隔符并选择文件');return;}const r=new FileReader();r.onload=e=>{showLoading();const lines=e.target.result.split('\n').filter(x=>x.trim());let data=decryptData(localStorage.getItem('emailData'))||[];const s=new Set(data.map(x=>x.email.toLowerCase()));let ok=0,dup=0,err=0;lines.forEach(line=>{const arr=line.split(sep).map(x=>x.trim());if(arr.length>=4){const em=arr[0],pw=arr[1],cid=arr[2],rt=arr[3];if(em&&pw&&cid&&rt&&!s.has(em.toLowerCase())){data.push({email:em,password:pw,clientId:cid,refreshToken:rt,group:'默认分组',remark:''});s.add(em.toLowerCase());ok++;}else dup++;}else err++;});localStorage.setItem('emailData',encryptData(data));loadData();hideLoading();showModal('导入完成',`成功：${ok} 重复：${dup} 错误：${err}`);};r.readAsText(file);}
+function deleteEmail(i){let d=[];try{d=JSON.parse(CryptoJS.AES.decrypt(localStorage.getItem('emailData'),ENCRYPT_KEY).toString(CryptoJS.enc.Utf8));}catch(e){}let f=d;if(currentGroupFilter!=='all')f=f.filter(x=>x.group===currentGroupFilter);if(searchKeyword)f=f.filter(x=>x.email.includes(searchKeyword)||x.remark.includes(searchKeyword));const item=f[i];if(!item)return;d=d.filter(x=>x.email!==item.email);localStorage.setItem('emailData',CryptoJS.AES.encrypt(JSON.stringify(d),ENCRYPT_KEY).toString());loadData();showModal('成功','已删除');}
+
+function importEmails(){const sep=document.getElementById('delimiter').value;const file=document.getElementById('file-input').files[0];if(!sep||!file)return showModal('错误','请输入分隔符并选择文件');const reader=new FileReader();reader.onload=e=>{showLoading();const lines=e.target.result.split('\n').map(x=>x.trim()).filter(Boolean);let data=[];try{const d=localStorage.getItem('emailData');if(d)data=JSON.parse(CryptoJS.AES.decrypt(d,ENCRYPT_KEY).toString(CryptoJS.enc.Utf8));}catch(e){}const exists=new Set(data.map(x=>x.email.toLowerCase()));let ok=0,dup=0,err=0;const batch=[];lines.forEach(line=>{const arr=line.split(sep).map(x=>x.trim());if(arr.length>=4){const em=arr[0],pw=arr[1],cid=arr[2],rt=arr[3];if(em&&pw&&cid&&rt){if(exists.has(em.toLowerCase())){dup++;}else{ok++;exists.add(em.toLowerCase());batch.push({email:em,password:pw,clientId:cid,refreshToken:rt,group:'默认分组',remark:''});}}else dup++;}else err++;});data.push(...batch);localStorage.setItem('emailData',CryptoJS.AES.encrypt(JSON.stringify(data),ENCRYPT_KEY).toString());localStorage.setItem('password',CryptoJS.AES.encrypt(JSON.stringify(document.getElementById('password').value||''),ENCRYPT_KEY).toString());loadData();hideLoading();showModal('导入完成',`成功：${ok} 重复：${dup} 错误：${err}`);};reader.readAsText(file);}
+
 function initDragUpload(){const u=document.getElementById('upload-box');const f=document.getElementById('file-input');const i=document.getElementById('file-info');u.onclick=()=>f.click();f.onchange=()=>i.textContent='已选择：'+f.files[0].name;u.ondragover=e=>e.preventDefault();u.ondrop=e=>{e.preventDefault();f.files=e.dataTransfer.files;i.textContent='已选择：'+f.files[0].name;};}
-const modal=document.getElementById('modal');const cmodal=document.getElementById('confirm-modal');const emodal=document.getElementById('edit-modal');const gmodal=document.getElementById('batch-group-modal');
-function showModal(t,m){document.getElementById('modal-title').textContent=t;document.getElementById('modal-message').innerHTML=m;modal.style.display='flex';}
-function showConfirmModal(t,m,c){confirmCallback=c;document.getElementById('confirm-title').textContent=t;document.getElementById('confirm-message').textContent=m;cmodal.style.display='flex';}
+
+function showModal(t,m){document.getElementById('modal-title').textContent=t;document.getElementById('modal-message').innerHTML=m;document.getElementById('modal').style.display='flex';}
+function showConfirmModal(t,m,c){confirmCallback=c;document.getElementById('confirm-title').textContent=t;document.getElementById('confirm-message').textContent=m;document.getElementById('confirm-modal').style.display='flex';}
 function confirmAction(){confirmCallback?.();closeConfirmModal();}
-function closeModal(){modal.style.display='none';}
-function closeConfirmModal(){cmodal.style.display='none';}
-function editEmail(i){const d=decryptData(localStorage.getItem('emailData'))||[];let f=d;if(currentGroupFilter!=='all')f=f.filter(x=>x.group===currentGroupFilter);if(searchKeyword)f=f.filter(x=>x.email.includes(searchKeyword)||x.remark.includes(searchKeyword));const item=f[i];document.getElementById('edit-email-original').value=item.email;document.getElementById('edit-email').value=item.email;document.getElementById('edit-password').value=item.password;document.getElementById('edit-client-id').value=item.clientId;document.getElementById('edit-refresh-token').value=item.refreshToken;document.getElementById('edit-remark').value=item.remark;updateGroupSelectors();document.getElementById('edit-group').value=item.group||'默认分组';emodal.style.display='flex';}
-function closeEditModal(){emodal.style.display='none';}
-function saveEdit(){const e=document.getElementById('edit-email-original').value;const p=document.getElementById('edit-password').value;const cid=document.getElementById('edit-client-id').value;const rt=document.getElementById('edit-refresh-token').value;const g=document.getElementById('edit-group').value;const r=document.getElementById('edit-remark').value;if(!p||!cid||!rt){showModal('错误','信息不能为空');return;}const d=decryptData(localStorage.getItem('emailData'))||[];const idx=d.findIndex(x=>x.email===e);if(idx>-1){d[idx]={...d[idx],password:p,clientId:cid,refreshToken:rt,group:g,remark:r};localStorage.setItem('emailData',encryptData(d));loadData();closeEditModal();showModal('成功','保存成功');}}
-function exportData(){const d=decryptData(localStorage.getItem('emailData'))||[];if(!d.length){showModal('提示','无数据');return;}const t=d.map(x=>`${x.email}----${x.password}----${x.group}----${x.remark}----${x.clientId}----${x.refreshToken}`).join('\n');const b=new Blob([t],{type:'text/plain'});const u=URL.createObjectURL(b);const a=document.createElement('a');a.href=u;a.download='emails.txt';a.click();URL.revokeObjectURL(u);showModal('成功','导出完成');}
-function toggleAllPasswords(){passwordVisible=!passwordVisible;document.querySelectorAll('.password-text').forEach((span,i)=>{const email=span.closest('tr').cells[1].textContent;const item=decryptData(localStorage.getItem('emailData')).find(x=>x.email===email);span.textContent=passwordVisible?item.password:'••••••••';const btn=document.querySelectorAll('.password-toggle')[i];if(btn)btn.innerHTML=passwordVisible?'<i class="fas fa-eye-slash"></i>':'<i class="fas fa-eye"></i>';});}
-function updateDashboard(d){const e=document.getElementById('account-count');const v=parseInt(e.textContent)||0;const t=d.length;let st=null;const a=ts=>{if(!st)st=ts;const p=Math.min((ts-st)/1000,1);e.textContent=Math.floor(p*(t-v)+v);if(p<1)requestAnimationFrame(a);};requestAnimationFrame(a);}
+function closeModal(){document.getElementById('modal').style.display='none';}
+function closeConfirmModal(){document.getElementById('confirm-modal').style.display='none';}
+
+function editEmail(i){let d=[];try{d=JSON.parse(CryptoJS.AES.decrypt(localStorage.getItem('emailData'),ENCRYPT_KEY).toString(CryptoJS.enc.Utf8));}catch(e){}let f=d;if(currentGroupFilter!=='all')f=f.filter(x=>x.group===currentGroupFilter);if(searchKeyword)f=f.filter(x=>x.email.includes(searchKeyword)||x.remark.includes(searchKeyword));const item=f[i];if(!item)return;document.getElementById('edit-email-original').value=item.email;document.getElementById('edit-email').value=item.email;document.getElementById('edit-password').value=item.password;document.getElementById('edit-client-id').value=item.clientId;document.getElementById('edit-refresh-token').value=item.refreshToken;document.getElementById('edit-remark').value=item.remark;updateGroupSelectors();document.getElementById('edit-group').value=item.group||'默认分组';document.getElementById('edit-modal').style.display='flex';}
+function closeEditModal(){document.getElementById('edit-modal').style.display='none';}
+function saveEdit(){const e=document.getElementById('edit-email-original').value;const p=document.getElementById('edit-password').value;const cid=document.getElementById('edit-client-id').value;const rt=document.getElementById('edit-refresh-token').value;const g=document.getElementById('edit-group').value;const r=document.getElementById('edit-remark').value;if(!p||!cid||!rt)return showModal('错误','信息不能为空');let d=[];try{d=JSON.parse(CryptoJS.AES.decrypt(localStorage.getItem('emailData'),ENCRYPT_KEY).toString(CryptoJS.enc.Utf8));}catch(e){}const idx=d.findIndex(x=>x.email===e);if(idx===-1)return;d[idx]={...d[idx],password:p,clientId:cid,refreshToken:rt,group:g,remark:r};localStorage.setItem('emailData',CryptoJS.AES.encrypt(JSON.stringify(d),ENCRYPT_KEY).toString());loadData();closeEditModal();showModal('成功','保存成功');}
+
+function exportData(){let d=[];try{d=JSON.parse(CryptoJS.AES.decrypt(localStorage.getItem('emailData'),ENCRYPT_KEY).toString(CryptoJS.enc.Utf8));}catch(e){}if(!d.length)return showModal('提示','无数据');const t=d.map(x=>`${x.email}----${x.password}----${x.group}----${x.remark}----${x.clientId}----${x.refreshToken}`).join('\n');const blob=new Blob([t],{type:'text/plain'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='emails.txt';a.click();URL.revokeObjectURL(url);showModal('成功','导出完成');}
+
+function toggleAllPasswords(){passwordVisible=!passwordVisible;document.querySelectorAll('.password-text').forEach((sp,i)=>{const email=sp.closest('tr').cells[2].textContent;let d=[];try{d=JSON.parse(CryptoJS.AES.decrypt(localStorage.getItem('emailData'),ENCRYPT_KEY).toString(CryptoJS.enc.Utf8));}catch(e){}const item=d.find(x=>x.email===email);if(item)sp.textContent=passwordVisible?item.password:'••••••••';});}
+
+function updateDashboard(d){const e=document.getElementById('account-count');const v=parseInt(e.textContent)||0;const t=d.length;let st=null;const a=ts=>{if(!st)st=ts;const p=Math.min((ts-st)/800,1);e.textContent=Math.floor(p*(t-v)+v);if(p<1)requestAnimationFrame(a);};requestAnimationFrame(a);}
+
 function searchEmails(){searchKeyword=document.getElementById('email-search').value.trim().toLowerCase();currentPage=1;loadData();}
 function clearSearch(){document.getElementById('email-search').value='';searchKeyword='';currentPage=1;loadData();}
-function initSearchEnter(){document.getElementById('email-search')?.addEventListener('keypress',e=>e.key==='Enter'&&searchEmails());document.getElementById('mail-search')?.addEventListener('keypress',e=>e.key==='Enter'&&searchMails());}
-function createGroup(){const n=document.getElementById('new-group').value.trim();if(!n){showModal('错误','分组名称不能为空');return;}const g=getGroups();if(g.includes(n)){showModal('错误','分组已存在');return;}g.push(n);saveGroups(g);document.getElementById('new-group').value='';showModal('成功','创建成功');}
-function deleteSelectedGroup(){const g=document.getElementById('group-filter').value;if(g==='all'||g==='默认分组'){showModal('错误','无法删除');return;}const gs=getGroups();const idx=gs.indexOf(g);if(idx===-1)return;const d=decryptData(localStorage.getItem('emailData'))||[];const has=d.some(x=>x.group===g);showConfirmModal('确认删除',has?'该分组下邮箱将移入默认分组':'确认删除？',()=>{const u=d.map(x=>x.group===g?{...x,group:'默认分组'}:x);localStorage.setItem('emailData',encryptData(u));gs.splice(idx,1);saveGroups(gs);currentGroupFilter='all';document.getElementById('group-filter').value='all';loadData();showModal('成功','删除成功');});}
+
+function createGroup(){const n=document.getElementById('new-group').value.trim();if(!n)return showModal('错误','请输入分组名称');const g=getGroups();if(g.includes(n))return showModal('错误','分组已存在');g.push(n);saveGroups(g);document.getElementById('new-group').value='';showModal('成功','创建成功');}
+function deleteSelectedGroup(){const g=document.getElementById('group-filter').value;if(g==='all'||g==='默认分组')return showModal('错误','无法删除该分组');const list=getGroups();const newList=list.filter(x=>x!==g);saveGroups(newList);let d=[];try{d=JSON.parse(CryptoJS.AES.decrypt(localStorage.getItem('emailData'),ENCRYPT_KEY).toString(CryptoJS.enc.Utf8));}catch(e){}d.forEach(x=>{if(x.group===g)x.group='默认分组';});localStorage.setItem('emailData',CryptoJS.AES.encrypt(JSON.stringify(d),ENCRYPT_KEY).toString());loadData();showModal('成功','删除成功');}
 function filterByGroup(){currentGroupFilter=document.getElementById('group-filter').value;currentPage=1;loadData();}
-function showBatchGroupConfirm(){const t=document.getElementById('batch-group-select').value;if(!t||selectedItems.length===0){showModal('错误','请选择分组和邮箱');return;}document.getElementById('selected-count').textContent=selectedItems.length;document.getElementById('target-group-name').textContent=t;gmodal.style.display='flex';}
-function confirmBatchGroup(){const t=document.getElementById('batch-group-select').value;const d=decryptData(localStorage.getItem('emailData'))||[];const u=d.map(x=>selectedItems.includes(x.email)?{...x,group:t}:x);localStorage.setItem('emailData',encryptData(u));gmodal.style.display='none';loadData();showModal('成功','批量修改完成');}
-function closeBatchGroupModal(){gmodal.style.display='none';}
-function encryptData(data){return CryptoJS.AES.encrypt(JSON.stringify(data),ENCRYPT_KEY).toString();}
-function decryptData(cipherText){try{const bytes=CryptoJS.AES.decrypt(cipherText,ENCRYPT_KEY);return JSON.parse(bytes.toString(CryptoJS.enc.Utf8));}catch(e){return null;}}
+
+function showBatchGroupConfirm(){const arr=updateSelectedItems();if(arr.length===0)return showModal('提示','请选择数据');const t=document.getElementById('batch-group-select').value;if(!t||t==='')return showModal('错误','请选择目标分组');document.getElementById('selected-count').textContent=arr.length;document.getElementById('target-group-name').textContent=t;document.getElementById('batch-group-modal').style.display='flex';}
+function confirmBatchGroup(){const arr=updateSelectedItems();const t=document.getElementById('batch-group-select').value;let d=[];try{d=JSON.parse(CryptoJS.AES.decrypt(localStorage.getItem('emailData'),ENCRYPT_KEY).toString(CryptoJS.enc.Utf8));}catch(e){}d.forEach(x=>{if(arr.includes(x.email))x.group=t;});localStorage.setItem('emailData',CryptoJS.AES.encrypt(JSON.stringify(d),ENCRYPT_KEY).toString());loadData();closeBatchGroupModal();showModal('成功','批量修改完成');}
+function closeBatchGroupModal(){document.getElementById('batch-group-modal').style.display='none';}
+
+function initSearchEnter(){document.getElementById('email-search')?.addEventListener('keypress',e=>e.key==='Enter'&&searchEmails());document.getElementById('mail-search')?.addEventListener('keypress',e=>e.key==='Enter'&&searchMails());}
 </script>
 </body>
 </html>
